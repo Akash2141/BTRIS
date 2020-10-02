@@ -1,7 +1,34 @@
-<form action="" [formGroup]="customerRegisterForm" (ngSubmit)="onSubmit($event)">
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container">
+    <form action="" [formGroup]="customerRegisterForm" (ngSubmit)="onSubmit($event)">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" >Sign Up</ion-button>
+      <ion-label class="text-center d-inline-block w-100">
+        already an account? <a [routerLink]="['/customer/login']">Sign in</a>
+      </ion-label>
+    </form>
+  </div>
+</ion-content>
+<!-- <form action="" [formGroup]="customerRegisterForm" (ngSubmit)="onSubmit($event)">
   <input type="email" name="email" formControlName="email" placeholder="Email">
   <input type="password" name="password" formControlName="password" placeholder="Password">
   <input type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password">
   <button>Sign Up</button>
   already an account? <a [routerLink]="['/customer/login']">Sign in</a>
-</form>
+</form> -->

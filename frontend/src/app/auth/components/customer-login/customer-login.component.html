@@ -1,6 +1,23 @@
-<form action="" [formGroup]="customerLoginForm" (ngSubmit)="onSubmit($event)">
-  <input type="email" name="email" formControlName="email" placeholder="Email">
-  <input type="password" name="password" formControlName="password" placeholder="password">
-  <button type="Submit" [disabled]="customerLoginForm?.invalid">Sign In</button>
-  not an account? <a [routerLink]="['/customer/register']" routerLinkActive="router-link-active" >Register</a>
-</form>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container">
+    <form action="" [formGroup]="customerLoginForm" (ngSubmit)="onSubmit($event)">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" > Sign in</ion-button>
+      <ion-label class="text-center d-inline-block w-100">
+        not an account? <a [routerLink]="['/customer/register']" routerLinkActive="router-link-active">Register</a>
+      </ion-label>
+    </form>
+  </div>
+</ion-content>

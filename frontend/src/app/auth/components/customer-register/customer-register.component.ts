@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AppConfig } from 'src/app/config/app.config';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,13 +13,16 @@ import { AuthService } from '../../services/auth.service';
 })
 export class CustomerRegisterComponent implements OnInit {
 
+  title: string;
   customerRegisterForm: FormGroup;
   private _unSubscribe = new Subject<any>();
 
   constructor(
     private _fb: FormBuilder,
     private _authService: AuthService
-  ) { }
+  ) {
+    this.title = AppConfig.title;
+  }
 
   ngOnInit() {
     this.createForm();

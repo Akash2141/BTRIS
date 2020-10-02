@@ -9,6 +9,6 @@ import com.google.common.base.Optional;
 @Repository
 public interface VendorRepository extends JpaRepository<Vendor, String> {
 	
-	Optional<Vendor> findByEmailAndPassword(String email,String password);
+	Vendor findByEmailAndPassword(String email,String password);
 
 }

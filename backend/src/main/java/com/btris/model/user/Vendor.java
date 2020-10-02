@@ -1,15 +1,20 @@
 package com.btris.model.user;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.btris.dto.user.VendorDTO;
+import com.btris.model.product.Product;
 
 import lombok.Data;
 
@@ -31,6 +36,8 @@ public class Vendor {
 	private Date lastLogin;
 	private boolean isActive;
 	private String state;
+	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<Product> product;
 	
 	public VendorDTO _toConvertVendorDTO() {
 		VendorDTO vendorDTO=new VendorDTO();

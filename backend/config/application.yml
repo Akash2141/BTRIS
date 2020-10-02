@@ -2,6 +2,7 @@
 spring:
   jpa:
     show-sql: true
+server:  error:    include-stacktrace: never
 
 DATABASE_URL: jdbc:mysql://localhost:3306/btris
 DATABASE_USERNAME: root

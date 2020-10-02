@@ -2,15 +2,18 @@ package com.btris.model.user;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.btris.dto.user.CustomerDTO;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Entity
@@ -18,11 +21,13 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name="uuid2",strategy = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	private String id;
 	private String firstName;
 	private String lastName;
+	@Column(unique = true, nullable = false)
 	private String email;
+	@Column(nullable = false)
 	private String password;
 	private String hash_password;
 	private long contact;
@@ -30,9 +35,9 @@ public class Customer {
 	private Date lastLogin;
 	private boolean isActive;
 	private String state;
-	
+
 	public CustomerDTO _toConvertCustomerDTO() {
-		CustomerDTO customerDTO=new CustomerDTO();
+		CustomerDTO customerDTO = new CustomerDTO();
 		customerDTO.setId(getId());
 		customerDTO.setFirstName(getFirstName());
 		customerDTO.setLastName(getLastName());
