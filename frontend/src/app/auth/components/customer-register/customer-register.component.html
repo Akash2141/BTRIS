@@ -1,0 +1,7 @@
+<form action="" [formGroup]="customerRegisterForm" (ngSubmit)="onSubmit($event)">
+  <input type="email" name="email" formControlName="email" placeholder="Email">
+  <input type="password" name="password" formControlName="password" placeholder="Password">
+  <input type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password">
+  <button>Sign Up</button>
+  already an account? <a [routerLink]="['/customer/login']">Sign in</a>
+</form>

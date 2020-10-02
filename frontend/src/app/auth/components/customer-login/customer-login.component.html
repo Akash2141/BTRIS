@@ -1,0 +1,6 @@
+<form action="" [formGroup]="customerLoginForm" (ngSubmit)="onSubmit($event)">
+  <input type="email" name="email" formControlName="email" placeholder="Email">
+  <input type="password" name="password" formControlName="password" placeholder="password">
+  <button type="Submit" [disabled]="customerLoginForm?.invalid">Sign In</button>
+  not an account? <a [routerLink]="['/customer/register']" routerLinkActive="router-link-active" >Register</a>
+</form>
