@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.btris.dto.product.ProductDTO;
 import com.btris.model.user.Vendor;
 
 import lombok.Data;
@@ -28,7 +29,17 @@ public class Product {
 	private String currency;
 	private boolean is_approved;
 	private String approved_by;
-	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "product")
-	private List<Vendor> vendor;
-	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "products")
+	private List<Vendor> vendors;
+
+	public ProductDTO _convertToProductDTO() {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setId(getId());
+		productDTO.setDescription(getDescription());
+		productDTO.setPrice(getPrice());
+		productDTO.setCurrency(getCurrency());
+		productDTO.setVendorList(getVendors());
+		return productDTO;
+	}
+
 }

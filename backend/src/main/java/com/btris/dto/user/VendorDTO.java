@@ -1,7 +1,9 @@
 package com.btris.dto.user;
 
 import java.util.Date;
+import java.util.List;
 
+import com.btris.model.product.Product;
 import com.btris.model.user.Vendor;
 
 import lombok.Data;
@@ -21,6 +23,7 @@ public class VendorDTO {
 	private Date lastLogin;
 	private boolean isActive;
 	private String state;
+	private List<Product> productList;
 	
 	public Vendor _toConvertVendorEntity() {
 		Vendor vendor=new Vendor();
@@ -35,6 +38,7 @@ public class VendorDTO {
 		vendor.setLastLogin(getLastLogin());
 		vendor.setActive(isActive());
 		vendor.setState(getState());
+		vendor.setProducts(getProductList());
 		return vendor;
 	}
 }
