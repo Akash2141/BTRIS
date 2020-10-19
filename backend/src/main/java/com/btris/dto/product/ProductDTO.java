@@ -2,8 +2,7 @@ package com.btris.dto.product;
 
 import java.util.List;
 
-import com.btris.model.product.Product;
-import com.btris.model.user.Vendor;
+import com.btris.dto.user.VendorDTO;
 
 import lombok.Data;
 
@@ -13,16 +12,5 @@ public class ProductDTO {
 	private String description;
 	private int price;
 	private String currency;
-	private List<Vendor> vendorList;
-
-	public Product _convertToProductEntity() {
-		Product product = new Product();
-		product.setId(getId());
-		product.setDescription(getDescription());
-		product.setPrice(getPrice());
-		product.setCurrency(getCurrency());
-		product.setVendors(getVendorList());
-		return product;
-	}
-
+	private List<VendorDTO> vendorDTOList;
 }

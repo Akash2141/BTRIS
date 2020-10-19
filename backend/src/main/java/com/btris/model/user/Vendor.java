@@ -35,21 +35,4 @@ public class Vendor {
 			@JoinColumn(name = "product_id") })
 	private List<Product> products;
 
-	public VendorDTO _toConvertVendorDTO() {
-		VendorDTO vendorDTO = new VendorDTO();
-		vendorDTO.setId(getId());
-		vendorDTO.setEmail(getEmail());
-		vendorDTO.setFirstName(getFirstName());
-		vendorDTO.setLastName(getLastName());
-		vendorDTO.setContact(getContact());
-		vendorDTO.setHash_password(getHash_password());
-		vendorDTO.setPassword(getPassword());
-		vendorDTO.setRegisteredAt(getRegisteredAt());
-		vendorDTO.setLastLogin(getLastLogin());
-		vendorDTO.setActive(isActive());
-		vendorDTO.setState(getState());
-		vendorDTO.setProductList(getProducts());
-		return vendorDTO;
-	}
-
 }

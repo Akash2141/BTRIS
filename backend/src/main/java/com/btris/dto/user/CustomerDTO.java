@@ -22,20 +22,4 @@ public class CustomerDTO {
 	private boolean isActive;
 	private String state;
 	
-	public Customer _toConvertCustomerEntity() {
-		Customer customer=new Customer();
-		customer.setId(getId());
-		customer.setFirstName(getFirstName());
-		customer.setLastName(getLastName());
-		customer.setEmail(getEmail());
-		customer.setPassword(getPassword());
-		customer.setHash_password(getHash_password());
-		customer.setContact(getContact());
-		customer.setRegisteredAt(getRegisteredAt());
-		customer.setLastLogin(getLastLogin());
-		customer.setActive(isActive());
-		customer.setState(getState());
-		return customer;
-	}
-	
 }

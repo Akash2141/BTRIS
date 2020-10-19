@@ -23,22 +23,5 @@ public class VendorDTO {
 	private Date lastLogin;
 	private boolean isActive;
 	private String state;
-	private List<Product> productList;
-	
-	public Vendor _toConvertVendorEntity() {
-		Vendor vendor=new Vendor();
-		vendor.setId(getId());
-		vendor.setEmail(getEmail());
-		vendor.setFirstName(getFirstName());
-		vendor.setLastName(getLastName());
-		vendor.setContact(getContact());
-		vendor.setHash_password(getHash_password());
-		vendor.setPassword(getPassword());
-		vendor.setRegisteredAt(getRegisteredAt());
-		vendor.setLastLogin(getLastLogin());
-		vendor.setActive(isActive());
-		vendor.setState(getState());
-		vendor.setProducts(getProductList());
-		return vendor;
-	}
+	private List<Product> products;
 }

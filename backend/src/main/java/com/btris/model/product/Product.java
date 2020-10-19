@@ -32,14 +32,4 @@ public class Product {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "products")
 	private List<Vendor> vendors;
 
-	public ProductDTO _convertToProductDTO() {
-		ProductDTO productDTO = new ProductDTO();
-		productDTO.setId(getId());
-		productDTO.setDescription(getDescription());
-		productDTO.setPrice(getPrice());
-		productDTO.setCurrency(getCurrency());
-		productDTO.setVendorList(getVendors());
-		return productDTO;
-	}
-
 }
