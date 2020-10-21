@@ -15,4 +15,31 @@ public class ApplicationException extends RuntimeException {
 		this.code = code;
 		this.args = args;
 	}
+	
+	public ApplicationException(String message,ApplicationErrorCode code, Serializable... args) {
+		super(message);
+		this.code=code;
+		this.args=args;
+	}
+	
+	public ApplicationException(String message,ApplicationErrorCode code) {
+		super(message);
+		this.code=code;
+	}
+	
+	public ApplicationException(ApplicationErrorCode code) {
+		this.code=code;
+		
+	}
+	
+	public Serializable[] args() {
+		if(args==null) {
+			args=new Serializable[0];
+		}
+		return args;
+	}
+	
+	public static ApplicationException badRequest() {
+		return new ApplicationException(ApplicationErrorCode.BAD_REQUEST);
+	}
 }
