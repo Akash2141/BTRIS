@@ -51,7 +51,7 @@ public class GlobalControllerExceptionHandler {
 	public ResponseEntity<ApplicationError> handleConflict(Throwable t){
 		log.error(t.getMessage(),t);
 		ApplicationError applicationError=new ApplicationError(ApplicationErrorCode.INTERNAL_SERVER_ERROR.getApplicationCode());
-		return new ResponseEntity<ApplicationError>(applicationError,HttpStatus.INTERNAL_SERVER_ERROR)
+		return new ResponseEntity<ApplicationError>(applicationError,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	

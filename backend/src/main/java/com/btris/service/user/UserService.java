@@ -1,20 +1,18 @@
 package com.btris.service.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import com.btris.dto.user.CustomerDTO;
 import com.btris.dto.user.VendorDTO;
+import com.btris.exception.ApplicationErrorCode;
+import com.btris.exception.ApplicationException;
 import com.btris.exception.UserAlreadyExistsException;
-import com.btris.exception.UserNotFoundException;
 import com.btris.mapper.CustomerMapper;
 import com.btris.mapper.VendorMapper;
 import com.btris.model.user.Customer;
 import com.btris.model.user.Vendor;
 import com.btris.repository.user.CustomerRepository;
 import com.btris.repository.user.VendorRepository;
-import com.google.common.base.Optional;
 
 import lombok.AllArgsConstructor;
 
@@ -27,19 +25,16 @@ public class UserService {
 	private CustomerMapper customerMapper;
 	private VendorMapper vendorMapper;
 
-	public CustomerDTO CustomerLogin(String username, String password) throws UserNotFoundException {
-		Customer customer=customerRepository.findByEmailAndPassword(username, password);
-		if(ObjectUtils.isEmpty(customer)) {
-			throw new UserNotFoundException("Customer not found");
-		}
+	public CustomerDTO CustomerLogin(String username, String password)  {
+		Customer customer=customerRepository.findByEmailAndPassword(username, password)
+				.orElseThrow(()->new ApplicationException(ApplicationErrorCode.NOT_FOUND));
 		return customerMapper.toDTO(customer);
 	}
 
-	public VendorDTO VendorLogin(String username, String password) throws UserNotFoundException {
-		Vendor vendor=vendorRepository.findByEmailAndPassword(username, password);
-		if(vendor==null) {
-			throw new UserNotFoundException("Vendor Not Found");
-		}
+	public VendorDTO VendorLogin(String username, String password) {
+		Vendor vendor=vendorRepository.findByEmailAndPassword(username, password)
+				.orElseThrow(()->new ApplicationException(ApplicationErrorCode.NOT_FOUND));
+		
 		return vendorMapper.toDTO(vendor);
 	}
 

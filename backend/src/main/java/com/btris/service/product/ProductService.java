@@ -1,14 +1,12 @@
 package com.btris.service.product;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.btris.dto.product.ProductDTO;
 import com.btris.mapper.ProductMapper;
-import com.btris.model.product.Product;
 import com.btris.repository.product.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,12 +19,10 @@ public class ProductService {
 	private final ProductMapper productMapper;
 
 	public void saveProduct(ProductDTO productDTO) {
-//		Product product = productDTO._convertToProductEntity();
 		productRepository.save(productMapper.toEntity(productDTO));
 	}
 
 	public void updateProduct(ProductDTO productDTO) {
-//		Product product = productDTO._convertToProductEntity();
 		productRepository.save(productMapper.toEntity(productDTO));
 	}
 

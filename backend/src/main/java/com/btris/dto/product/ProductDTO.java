@@ -12,5 +12,5 @@ public class ProductDTO {
 	private String description;
 	private int price;
 	private String currency;
-	private List<VendorDTO> vendorDTOList;
+	private List<VendorDTO> vendors;
 }

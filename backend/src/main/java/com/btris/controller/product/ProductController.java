@@ -5,37 +5,45 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.btris.dto.product.ProductDTO;
+import com.btris.service.product.ProductService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/product")
 public class ProductController {
 
-	@PostMapping
+	private final ProductService productService;
+
+	@PostMapping("/add")
 	public void saveProduct(@RequestBody ProductDTO productDTO) {
-		
+		productService.saveProduct(productDTO);
 	}
-	
-	@PutMapping
+
+	@PutMapping("/update")
 	public void updateProduct(@RequestBody ProductDTO productDTO) {
-		
+		productService.updateProduct(productDTO);
 	}
-	
-	@DeleteMapping
-	public void deleteProduct(@RequestParam String productId ) {
-		
+
+	@DeleteMapping("/delete")
+	public void deleteProduct(@RequestParam String productId) {
+		productService.deleteProduct(productId);
 	}
-	
-	@GetMapping
-	public void getAllProduct() {
-		
+
+	@GetMapping("/all")
+	public void getProducts() {
+		productService.getProducts();
 	}
-	
-	@GetMapping
-	public void getProductById(@RequestParam String productId) {
-		
+
+	@GetMapping("/{id}")
+	public void getProductById(@RequestParam String id) {
+		productService.getById(id);
 	}
-	
+
 }
