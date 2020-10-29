@@ -1,4 +1,4 @@
-package com.btris.service.auth;
+package com.btris.service.token;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

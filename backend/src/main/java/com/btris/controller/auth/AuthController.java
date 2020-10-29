@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.btris.dto.user.CustomerDTO;
 import com.btris.dto.user.VendorDTO;
 import com.btris.exception.UserAlreadyExistsException;
-import com.btris.exception.UserNotFoundException;
-import com.btris.model.user.Customer;
 import com.btris.service.user.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,13 +28,14 @@ public class AuthController {
 	private UserService userService;
 
 	@GetMapping("/customer/login")
-	public CustomerDTO CustomerLogin(@RequestParam String username, @RequestParam String password)
-			throws Exception {
+	public CustomerDTO CustomerLogin(@RequestParam String username, @RequestParam String password) {
+		password = bcryptPasswordEncoder.encode(password);
 		return userService.CustomerLogin(username, password);
 	}
 
 	@GetMapping("/seller/login")
-	public VendorDTO VendorLogin(@RequestParam String username, @RequestParam String password) throws UserNotFoundException {
+	public VendorDTO VendorLogin(@RequestParam String username, @RequestParam String password)  {
+		password = bcryptPasswordEncoder.encode(password);
 		return userService.VendorLogin(username, password);
 	}
 

@@ -3,13 +3,7 @@ package com.btris.model.user;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -36,23 +30,9 @@ public class Vendor {
 	private Date lastLogin;
 	private boolean isActive;
 	private String state;
-	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	private List<Product> product;
-	
-	public VendorDTO _toConvertVendorDTO() {
-		VendorDTO vendorDTO=new VendorDTO();
-		vendorDTO.setId(getId());
-		vendorDTO.setEmail(getEmail());
-		vendorDTO.setFirstName(getFirstName());
-		vendorDTO.setLastName(getLastName());
-		vendorDTO.setContact(getContact());
-		vendorDTO.setHash_password(getHash_password());
-		vendorDTO.setPassword(getPassword());
-		vendorDTO.setRegisteredAt(getRegisteredAt());
-		vendorDTO.setLastLogin(getLastLogin());
-		vendorDTO.setActive(isActive());
-		vendorDTO.setState(getState());
-		return vendorDTO;
-	}
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "vendor_product", joinColumns = { @JoinColumn(name = "vendor_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "product_id") })
+	private List<Product> products;
 
 }

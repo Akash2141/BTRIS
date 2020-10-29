@@ -7,13 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.btris.dto.user.CustomerDTO;
 
 import lombok.Data;
-import lombok.NonNull;
 
 @Data
 @Entity

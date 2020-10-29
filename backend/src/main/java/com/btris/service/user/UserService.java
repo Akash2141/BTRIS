@@ -1,56 +1,48 @@
 package com.btris.service.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.btris.dto.user.CustomerDTO;
 import com.btris.dto.user.VendorDTO;
+import com.btris.exception.ApplicationErrorCode;
+import com.btris.exception.ApplicationException;
 import com.btris.exception.UserAlreadyExistsException;
-import com.btris.exception.UserNotFoundException;
+import com.btris.mapper.CustomerMapper;
+import com.btris.mapper.VendorMapper;
 import com.btris.model.user.Customer;
 import com.btris.model.user.Vendor;
 import com.btris.repository.user.CustomerRepository;
 import com.btris.repository.user.VendorRepository;
-import com.google.common.base.Optional;
+
+import lombok.AllArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class UserService {
 
-	@Autowired
-	BCryptPasswordEncoder bcryptPasswordEncoder;
+	private VendorRepository vendorRepository;
+	private CustomerRepository customerRepository;
+	private CustomerMapper customerMapper;
+	private VendorMapper vendorMapper;
 
-	@Autowired
-	VendorRepository vendorRepository;
-
-	@Autowired
-	CustomerRepository customerRepository;
-
-	public CustomerDTO CustomerLogin(String username, String password) throws Exception {
-		log.info("This is the password::", password);
-		Customer customer = customerRepository.findByEmail(username);
-		if (customer == null) {
-			throw new UserNotFoundException("Customer not found");
-		}
-		if (!bcryptPasswordEncoder.matches(password, customer.getPassword())) {
-			throw new Exception("Password is incorrect");
-		}
-		return customer._toConvertCustomerDTO();
+	public CustomerDTO CustomerLogin(String username, String password)  {
+		Customer customer=customerRepository.findByEmailAndPassword(username, password)
+				.orElseThrow(()->new ApplicationException(ApplicationErrorCode.NOT_FOUND));
+		return customerMapper.toDTO(customer);
 	}
 
-	public VendorDTO VendorLogin(String username, String password) throws UserNotFoundException {
-		Vendor vendor = vendorRepository.findByEmailAndPassword(username, password);
-		if (vendor == null) {
-			throw new UserNotFoundException("Vendor Not Found");
-		}
-		return vendor._toConvertVendorDTO();
+	public VendorDTO VendorLogin(String username, String password) {
+		Vendor vendor=vendorRepository.findByEmailAndPassword(username, password)
+				.orElseThrow(()->new ApplicationException(ApplicationErrorCode.NOT_FOUND));
+		
+		return vendorMapper.toDTO(vendor);
 	}
 
 	public void CustomerRegister(CustomerDTO customerDTO) throws UserAlreadyExistsException {
-		Customer customer = customerDTO._toConvertCustomerEntity();
+		Customer customer = customerMapper.toEntity(customerDTO);
 		try {
 			customerRepository.save(customer);
 		} catch (Exception e) {
@@ -59,7 +51,7 @@ public class UserService {
 	}
 
 	public void VendorRegister(VendorDTO vendorDTO) throws UserAlreadyExistsException {
-		Vendor vendor = vendorDTO._toConvertVendorEntity();
+		Vendor vendor = vendorMapper.toEntity(vendorDTO);
 		try {
 			vendorRepository.save(vendor);
 		} catch (Exception e) {
