@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AppConfig } from 'src/app/config/app.config';
@@ -19,7 +20,8 @@ export class CustomerLoginComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router:Router
   ) {
     this.title = AppConfig.title;
   }
@@ -39,6 +41,7 @@ export class CustomerLoginComponent implements OnInit {
     let { email, password } = this.customerLoginForm.getRawValue();
     this._authService.customerLogin(email, password).pipe(takeUntil(this._unSubscribe)).subscribe(data => {
       console.log('user has been logged in successfully');
+      this._router.navigate(['products'])
     })
   }
 

@@ -31,14 +31,12 @@ public class AuthController {
 
 	@GetMapping("/customer/login")
 	public CustomerDTO CustomerLogin(@RequestParam String username, @RequestParam String password)
-			throws UserNotFoundException {
-		password = bcryptPasswordEncoder.encode(password);
+			throws Exception {
 		return userService.CustomerLogin(username, password);
 	}
 
 	@GetMapping("/seller/login")
 	public VendorDTO VendorLogin(@RequestParam String username, @RequestParam String password) throws UserNotFoundException {
-		password = bcryptPasswordEncoder.encode(password);
 		return userService.VendorLogin(username, password);
 	}
 

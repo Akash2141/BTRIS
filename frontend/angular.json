@@ -45,7 +45,10 @@
               {
                 "input": "src/global.scss"
               },
-              "src/assets/bootstrap-4.5.2/dist/css/bootstrap.min.css"
+              "src/assets/bootstrap-4.5.2/dist/css/bootstrap.min.css",
+              "src/assets/fontawesome-free-5.15.0-web/css/fontawesome.min.css",
+              "src/assets/fontawesome-free-5.15.0-web/css/brands.min.css",
+              "src/assets/fontawesome-free-5.15.0-web/css/solid.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

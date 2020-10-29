@@ -15,17 +15,25 @@ const routes: Routes = [
   // },
 
   {
-    path:'customer/login',
-    component:CustomerLoginComponent
+    path: 'customer/login',
+    component: CustomerLoginComponent
   },
   {
-    path:'customer/register',
-    component:CustomerRegisterComponent
+    path: 'customer/register',
+    component: CustomerRegisterComponent
   },
   {
-    path:"",
-    redirectTo:'/customer/login',
-    pathMatch:"full"
+    path: 'products',
+    loadChildren: () => import('./product/product.module').then(m => m.ProductPageModule)
+  },
+  {
+    path: "",
+    redirectTo: '/customer/login',
+    pathMatch: "full"
+  },
+  {
+    path: 'product',
+    loadChildren: () => import('./product/product.module').then(m => m.ProductPageModule)
   }
 ];
 
