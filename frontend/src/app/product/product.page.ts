@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfig } from '../config/app.config';
 
 @Component({
   selector: 'app-product',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProductPage implements OnInit {
 
   sliderConfig: any;
+  pageTitle: string;
 
   constructor() {
     this.setSliderConfig();
@@ -27,6 +29,7 @@ export class ProductPage implements OnInit {
   }
 
   ngOnInit() {
+    this.pageTitle = AppConfig.title;
   }
 
 }

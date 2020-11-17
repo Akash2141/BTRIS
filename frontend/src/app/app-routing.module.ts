@@ -14,26 +14,34 @@ const routes: Routes = [
   //   pathMatch: 'full'
   // },
 
-  {
-    path: 'customer/login',
-    component: CustomerLoginComponent
-  },
-  {
-    path: 'customer/register',
-    component: CustomerRegisterComponent
-  },
+  // {
+  //   path: 'customer/login',
+  //   component: CustomerLoginComponent
+  // },
+  // {
+  //   path: 'customer/register',
+  //   component: CustomerRegisterComponent
+  // },
   {
     path: 'products',
     loadChildren: () => import('./product/product.module').then(m => m.ProductPageModule)
   },
   {
+    path: 'products-categoris',
+    loadChildren: () => import('./product-categories/product-categories.module').then(m => m.ProductCategoriesPageModule)
+  },
+  {
     path: "",
-    redirectTo: '/customer/login',
+    redirectTo: '/products-categoris',
     pathMatch: "full"
   },
   {
     path: 'product',
     loadChildren: () => import('./product/product.module').then(m => m.ProductPageModule)
+  },
+  {
+    path: 'product-categories',
+    loadChildren: () => import('./product-categories/product-categories.module').then(m => m.ProductCategoriesPageModule)
   }
 ];
 
