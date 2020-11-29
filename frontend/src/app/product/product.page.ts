@@ -32,4 +32,8 @@ export class ProductPage implements OnInit {
     this.pageTitle = AppConfig.title;
   }
 
+  loadData(event){
+    
+  }
+
 }
